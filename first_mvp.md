@@ -1,0 +1,2 @@
+<a href=intent://arvr.google.com/scene-viewer/1.2?file=https://github.com/wasiongit/ar-project/raw/refs/heads/main/matchbox.glb&title=Bengali+tiger&referrer=google.com:ANIMALS:kp&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/Tiger/Tiger.ogg#Intent;package=com.google.android.googlequicksearchbox;scheme=https;S.browser_fallback_url=https://arvr.google.com/scene-viewer?;>
+    Click</a>

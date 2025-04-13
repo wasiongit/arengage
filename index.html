@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="refresh" content="0; url=intent://arvr.google.com/scene-viewer/1.2?file=https://github.com/wasiongit/ar-project/raw/refs/heads/main/matchbox.glb&title=Bengali+tiger&referrer=google.com:ANIMALS:kp&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/Tiger/Tiger.ogg#Intent;package=com.google.android.googlequicksearchbox;scheme=https;S.browser_fallback_url=https://arvr.google.com/scene-viewer?file=https://github.com/wasiongit/ar-project/raw/refs/heads/main/matchbox.glb&title=Bengali+tiger&referrer=google.com:ANIMALS:kp&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/Tiger/Tiger.ogg;end;" />
-  <title>Redirecting...</title>
+  <meta charset="UTF-8">
+  <title>Launching AR...</title>
 </head>
 <body>
-  <p>Redirecting to AR experience...</p>
+  <p>Launching AR experience...</p>
+
+  <script>
+    function isAndroid() {
+      return /Android/i.test(navigator.userAgent);
+    }
+
+    function openIntentLink() {
+      const intentUrl = "intent://arvr.google.com/scene-viewer/1.2?file=https://github.com/wasiongit/ar-project/raw/refs/heads/main/matchbox.glb&title=Bengali+tiger&referrer=google.com:ANIMALS:kp&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/Tiger/Tiger.ogg#Intent;package=com.google.android.googlequicksearchbox;scheme=https;S.browser_fallback_url=https://arvr.google.com/scene-viewer?file=https://github.com/wasiongit/ar-project/raw/refs/heads/main/matchbox.glb&title=Bengali+tiger&referrer=google.com:ANIMALS:kp&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/Tiger/Tiger.ogg;end;";
+
+      const a = document.createElement('a');
+      a.href = intentUrl;
+      document.body.appendChild(a);
+      a.click();
+    }
+
+    if (isAndroid()) {
+      openIntentLink();
+    } else {
+      document.body.innerHTML = "<p>This AR experience is only supported on Android devices.</p>";
+    }
+  </script>
 </body>
 </html>

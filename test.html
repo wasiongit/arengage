@@ -1,23 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
   <script>
-    const modelUrl = "https://github.com/wasiongit/ar-project/raw/refs/heads/main/matchbox.glb";
-    const usdzUrl = "https://example.com/model.usdz";
-    
-    if (/Android/i.test(navigator.userAgent)) {
-      // Android: Use intent
-      window.location.href = `intent://arvr.google.com/scene-viewer/1.0?file=${modelUrl}&mode=ar_only#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;S.browser_fallback_url=${encodeURIComponent(window.location.href)};end;`;
-    } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-      // iOS: Open USDZ in AR Quick Look
-      window.location.href = usdzUrl;
+    // 3D assets
+    const glb = encodeURIComponent(
+      'https://github.com/wasiongit/ar-project/raw/refs/heads/main/matchbox.glb'
+    );
+    const usdz = 'https://example.com/model.usdz';           // must be HTTPS
+
+    // Re-use current page as a fallback (properly escaped)
+    const fallback = encodeURIComponent(window.location.href);
+
+    // --- Android (Scene Viewer) ---
+    const sceneViewer = `intent://arvr.google.com/scene-viewer/1.0` +
+      `?file=${glb}` +
+      `&mode=ar_preferred` +
+      `&title=Visit%20Today%20for%20Marketing` +
+      // Optional: link button inside Scene Viewer
+      `&link=https%3A%2F%2Fwww.arengage.com` +
+      `#Intent;scheme=https;package=com.google.ar.core;` +
+      `action=android.intent.action.VIEW;S.browser_fallback_url=${fallback};end;`;
+
+    // --- iOS (AR Quick Look) ---
+    // <a rel="ar"> is the official way; JS redirect also works:
+    const quickLook = usdz;   // Safari auto-launches AR Quick Look
+
+    // Detect
+    const ua = navigator.userAgent || '';
+    if (/android/i.test(ua)) {
+      window.location.href = sceneViewer;
+    } else if (/(iphone|ipad|ipod)/i.test(ua)) {
+      window.location.href = quickLook;
     } else {
-      // Desktop/unsupported: Show 3D model viewer
-      window.location.href = "https://example.com/model-viewer";
+      // Desktop fallback: 3D web viewer
+      window.location.href = 'https://example.com/model-viewer';
     }
   </script>
 </head>
 <body>
-  Redirecting to AR...
+  Redirecting to AR experience…
 </body>
 </html>
